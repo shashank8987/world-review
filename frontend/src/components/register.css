@@ -3,7 +3,7 @@
     height: 250px;
     padding: 20px;
     border-radius: 10px;
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     position: absolute;
     top: 0;
     bottom: 0;
@@ -28,7 +28,7 @@
     padding: 5px;
     border-radius: 5px;
     color: white;
-    background-color: slateblue;
+    background-color: teal;
     cursor: pointer;
   }
   

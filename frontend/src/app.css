@@ -2,6 +2,7 @@
     width: 250px;
     height: 250px;
     display: flex;
+    /* background-color: blanchedalmond; */
     flex-direction: column;
     justify-content: space-around;
 }
@@ -19,7 +20,7 @@ label {
 }
 
 .stars {
-    color: gold;
+    color: teal;
 }
 
 .username {

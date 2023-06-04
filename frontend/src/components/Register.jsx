@@ -31,7 +31,7 @@ export default function Register({ setShowRegister }) {
   return (
     <div className="registerContainer">
       <div className="logo">
-        <Room /> BQTPin
+        <Room /> World Review
       </div>
       <form onSubmit={handleSubmit}>
         <input type="text" placeholder="username" ref={nameRef} />
@@ -39,7 +39,7 @@ export default function Register({ setShowRegister }) {
         <input type="password" placeholder="password" ref={passwordRef} />
         <button className="registerBtn">Register</button>
         {success && (
-          <span className="success">Successfully. You can login now!</span>
+          <span className="success">You have been registered successfully</span>
         )}
         {error && <span className="failure">Something went wrong!</span>}
       </form>

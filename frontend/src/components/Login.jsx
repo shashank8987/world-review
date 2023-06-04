@@ -30,13 +30,13 @@ export default function Login({setShowLogin, myStorage, setCurrentUser}) {
   return (
     <div className="loginContainer">
       <div className="logo">
-        <Room /> BQTPin
+        <Room /> World Review
       </div>
       <form onSubmit={handleSubmit}>
         <input type="text" placeholder="username" ref={nameRef}/>
         <input type="password" placeholder="password" ref={passwordRef}/>
         <button className="loginBtn">Login</button>
-        {error && <span className="failure">Something went wrong!</span>}
+        {error && <span className="failure">Username or Password is incorrect</span>}
       </form>
       <Cancel className="loginCancel" onClick={() => setShowLogin(false)} />
     </div>

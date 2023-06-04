@@ -21,10 +21,61 @@ function App() {
   const [viewport, setViewport] = useState({
     width: "100vw",
     height: "100vh",
-    latitude: 46,
-    longitude: 17,
+    latitude: 23.3441,
+    longitude: 85.3096,
     zoom: 4,
   });
+
+  useEffect(() => {
+    const getPins = async () => {
+      try {
+        const allPins = await axios.get("http://localhost:8800/api/pins");
+        console.log(allPins.data);
+        setPins(allPins.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getPins();
+  }, []);
+
+  const handleMarkerClick = (id, lat, long) => {
+    setCurrentPlaceId(id);
+    setViewport({ ...viewport, latitude: lat, longitude: long });
+  };
+
+  const handleAddClick = (e) => {
+    const [long, lat] = e.lngLat;
+    setNewPlace({
+      lat,
+      long,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const newPin = {
+      username: currentUser,
+      title,
+      desc,
+      rating,
+      lat: newPlace.lat,
+      long: newPlace.long,
+    };
+
+    try {
+      const res = await axios.post("http://localhost:8800/api/pins", newPin);
+      setPins([...pins, res.data]);
+      setNewPlace(null);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleLogout = () => {
+    myStorage.removeItem("user");
+    setCurrentUser(null);
+  }
 
   return (
     <div className="App">
@@ -62,7 +113,9 @@ function App() {
                 anchor="left"
                 onClose={() => setCurrentPlaceId(null)}
               >
+                
                 <div className="card">
+                  
                   <label>Place</label>
                   <h4 className="place">{p.title}</h4>
                   <label>Review</label>
@@ -76,6 +129,7 @@ function App() {
                     Created by <b>{p.username}</b>
                   </span>
                   <span className="date">{format(p.createdAt)}</span>
+                  
                 </div>
               </Popup>
             )}
@@ -92,7 +146,7 @@ function App() {
           >
             <div>
               <form onSubmit={handleSubmit}>
-                <label>Title</label>
+                <label>Place</label>
                 <input
                   placeholder="Enter a title"
                   onChange={(e) => setTitle(e.target.value)}
